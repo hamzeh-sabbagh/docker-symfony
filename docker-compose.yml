@@ -1,15 +1,24 @@
 version: '2'
 
 services:
-    db:
-        image: mysql
-        volumes:
-            - "./.data/db:/var/lib/mysql"
-        environment:
-            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-            MYSQL_DATABASE: ${MYSQL_DATABASE}
-            MYSQL_USER: ${MYSQL_USER}
-            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    # db:
+    #     image: mysql
+    #     volumes:
+    #         - "./.data/db:/var/lib/mysql"
+    #     environment:
+    #         MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    #         MYSQL_DATABASE: ${MYSQL_DATABASE}
+    #         MYSQL_USER: ${MYSQL_USER}
+    #         MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    rmq:
+            image: rabbitmq:3-management
+            volumes: 
+                - ./rabbitmq:/var/lib/rabbitmq/
+                - ./logs/rabbitmq:/var/log/rabbitmq/
+            ports:
+                - 5672:5672
+                - 15672:15672
+
     php:
         build:
             context: php7-fpm
@@ -27,12 +36,10 @@ services:
         volumes:
             - ./logs/nginx/:/var/log/nginx
     elk:
-        image: willdurand/elk
+        image: elasticsearch
         ports:
-            - 81:80
+            - 9200:9200
         volumes:
-            - ./elk/logstash:/etc/logstash
-            - ./elk/logstash/patterns:/opt/logstash/patterns
-        volumes_from:
-            - php
-            - nginx
+            - ./elasticsearch/data/:/usr/share/elasticsearch/data
+            - ./elasticsearch/logs/:/usr/share/elasticsearch/logs
+    
