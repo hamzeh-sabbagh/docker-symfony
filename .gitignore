@@ -2,4 +2,3 @@
 /.data
 /elasticsearch/data/
 /rabbitmq/mnesia/
-.env

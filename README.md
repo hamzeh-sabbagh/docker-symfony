@@ -13,10 +13,8 @@ Docker-symfony gives you everything you need for developing Symfony application.
 2. git clone git@github.com:hamzeh-sabbagh/books.git (both on the same directory)
 3. cd docker-symfony
 4. docker-compose up -d
-//TODO
-4. docker ps 
-5. docker stop `php-container-id`
-6. docker-compose up -d "again to run php container"
+5. docker stop $(docker ps | grep "dockersymfony_php_1" | awk '{print $1}')
+6. docker-compose up -d
 
 // This is because of an issue of the receive.php file which tries to connect to rabbitMQ while its not running.
 
@@ -26,7 +24,7 @@ Docker-symfony gives you everything you need for developing Symfony application.
 * homepage (Elasticseaarch) visit http://localhost 
 * RabbitMQ: http://localhost:15672
 * Curl: 
-    - curl -X POST http://localhost/book/add -d '{"name":"book of 2011","author":"hamzeh","year":2011,"count":12}'
+    - curl -X POST http://localhost/book/add -d '{"name":"book of 2012","author":"hamzeh","year":2011,"count":12}'
 
 ## Known Issues
 
