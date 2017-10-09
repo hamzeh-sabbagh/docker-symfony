@@ -13,10 +13,11 @@ Docker-symfony gives you everything you need for developing Symfony application.
 2. git clone git@github.com:hamzeh-sabbagh/books.git (both on the same directory)
 3. cd docker-symfony
 4. docker-compose up -d
+7. docker exec -it $(docker ps | grep "dockersymfony_php_1" | awk '{print $1}') bash
+8. composer install
+9. exit
 5. docker stop $(docker ps | grep "dockersymfony_php_1" | awk '{print $1}')
 6. docker-compose up -d
-
-// This is because of an issue of the receive.php file which tries to connect to rabbitMQ while its not running.
 
 
 ## Usage
