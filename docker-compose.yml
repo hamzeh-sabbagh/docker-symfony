@@ -1,15 +1,6 @@
 version: '2'
 
 services:
-    # db:
-    #     image: mysql
-    #     volumes:
-    #         - "./.data/db:/var/lib/mysql"
-    #     environment:
-    #         MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-    #         MYSQL_DATABASE: ${MYSQL_DATABASE}
-    #         MYSQL_USER: ${MYSQL_USER}
-    #         MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     rmq:
             image: rabbitmq:3-management
             volumes: 
@@ -18,8 +9,11 @@ services:
             ports:
                 - 5672:5672
                 - 15672:15672
-
     php:
+        env_file: 
+            - ../books/.env
+        depends_on: 
+            - rmq
         build:
             context: php7-fpm
             args:
@@ -29,6 +23,8 @@ services:
             - ./logs/symfony:/var/www/symfony/app/logs
     nginx:
         build: nginx
+        depends_on:
+            - php
         ports:
             - 80:80
         volumes_from:
