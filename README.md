@@ -19,8 +19,8 @@ Docker-symfony gives you everything you need for developing Symfony application.
 
 ## Usage
 
-* homepage (Elasticseaarch) visit localhost 
-* RabbitMQ: http://localhost:http://localhost:15672
+* homepage (Elasticseaarch) visit http://localhost 
+* RabbitMQ: http://localhost:15672
 * Curl: 
     - curl -X POST http://localhost/book/add -d '{"name":"book of 2011","author":"hamzeh","year":2011,"count":12}'
 
@@ -28,3 +28,4 @@ Docker-symfony gives you everything you need for developing Symfony application.
 
 1. Need to stop php container in order to connect to rabbitMQ.
 2. Data removed after stopping the rmq container.
+
