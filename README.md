@@ -1,4 +1,7 @@
-#FORKED BRANCH FROM https://github.com/maxpou/docker-symfony
+# >>
+# THIS IS A CLONED AND EDITED BRANCH FROM https://github.com/maxpou/docker-symfony
+# >>
+
 [![Build Status](https://travis-ci.org/maxpou/docker-symfony.svg?branch=master)](https://travis-ci.org/maxpou/docker-symfony)
 
 ![](doc/schema.png)
